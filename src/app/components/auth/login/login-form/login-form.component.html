@@ -1,0 +1,30 @@
+<form class="space-y-3" (submit)="$event.preventDefault()">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="Tu usuario" />
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" placeholder="••••••••" />
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+
+          <div class="flex justify-between items-center text-xs">
+            <mat-checkbox class="!text-gray-700">Recordarme</mat-checkbox>
+            <a class="text-rose-500 hover:underline cursor-pointer">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <button mat-raised-button color="primary" class="w-full !bg-rose-400 hover:!bg-rose-500 !text-white !py-2">
+            Iniciar sesión
+          </button>
+
+          <p class="text-xs text-right mt-4 text-gray-800">
+            ¿No tienes una cuenta?
+            <a class="text-rose-500 hover:underline cursor-pointer">Registrar</a>
+          </p>
+          <p class="text-xs text-left mt-4 text-gray-800">
+            <a class="text-rose-500 hover:underline flex items-center gap-1 cursor-pointer">← Volver a inicio</a>
+          </p>
+        </form>

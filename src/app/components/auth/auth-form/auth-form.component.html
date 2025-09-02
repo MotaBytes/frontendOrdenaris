@@ -1,0 +1,23 @@
+<div class="relative md:w-[420px] w-full p-8 mb-40 animate-fade-in bg-white shadow-lg rounded-lg">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-800">
+          {{ mode() === 'login' ? 'Iniciar sesión' : 'Crear cuenta' }}
+        </h2>
+
+        <div class="flex gap-1 text-sm">
+          <button mat-button class="!px-3" [ngClass]="{'!text-rose-500': mode()==='login'}" (click)="setMode('login')">Login</button>
+          <span class="opacity-40">|</span>
+          <button mat-button class="!px-3" [ngClass]="{'!text-rose-500': mode()==='register'}" (click)="setMode('register')">Registro</button>
+        </div>
+      </div>
+
+      <!-- LOGIN -->
+      @if (mode() === 'login') {
+        <app-login-form></app-login-form>
+      }
+
+      <!-- REGISTRO -->
+      @if (mode() === 'register') {
+        <app-register-form></app-register-form>
+      }
+    </div>
