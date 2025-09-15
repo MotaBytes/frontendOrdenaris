@@ -42,4 +42,16 @@ export class AuthService {
   getToken(): string | null {
     return sessionStorage.getItem('authToken');
   }
+
+  initAuthListener(): void {
+    const token = this.getToken();
+    if (!token) {
+      return;
+    }
+    this.getProfile().subscribe({
+      error: () => {
+        this.logout();
+      }
+    });
+  }
 }
