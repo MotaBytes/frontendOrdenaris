@@ -65,9 +65,9 @@ export class LoginFormComponent implements OnInit {
       this.authService.login(credentials).pipe(
         finalize(() => this.isLoading = false)
       ).subscribe({
-        next: () => {
+        next: (user) => {
           this.router.navigate(['/landing']);
-          this._snackbar.openSnackBar('Sesion iniciada correctamente.');
+          this._snackbar.openSnackBar(`Bienvenido, ${user.name}`);
 
         },
         error: () => {

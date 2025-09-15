@@ -3,44 +3,51 @@
     <div class="text-xl font-bold text-rose-800">PlatZi</div>
 
     <div class="hidden items-center space-x-6 lg:flex">
-          <div class="relative w-80">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
-            </span>
-            <input type="text" placeholder="Search" class="w-full bg-rose-100 rounded-full py-2 pl-12 pr-4 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-          </div>
+      <div class="relative w-80">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+        </span>
+        <input type="text" placeholder="Search" class="w-full bg-rose-100 rounded-full py-2 pl-12 pr-4 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+      </div>
 
-          <div class="flex items-center space-x-6 text-sm font-medium text-gray-600">
-            <a href="/login" class="flex items-center space-x-2 hover:text-rose-600 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
-              <span>Sign Up/Sign In</span>
-            </a>
-            <div class="h-5 border-l border-rose-300"></div>
-            <a href="/cart" class="flex items-center space-x-2 hover:text-rose-600 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg>
-              <span>Cart</span>
-            </a>
+      <div class="flex items-center space-x-6 text-sm font-medium text-gray-600">
+        @if (user()) {
+          <div class="flex items-center space-x-2 font-semibold text-gray-800 hover:text-rose-400 bg-white p-2 rounded-full ">
+            <span>{{ user()?.name }}</span>
           </div>
-    </div>
+          <a (click)="logout()" class="hover:text-rose-600 cursor-pointer">Logout</a>
+        } @else {
+          <a href="/login" class="flex items-center space-x-2 hover:text-rose-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+            <span>Sign Up/Sign In</span>
+          </a>
+        }
+        <div class="h-5 border-l border-rose-300"></div>
+        <a href="/cart" class="flex items-center space-x-2 hover:text-rose-600 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg>
+          <span>Cart</span>
+        </a>
+      </div>
+    </div>
 
     <div class="lg:hidden">
       <button (click)="toggleMobileMenu()" class="text-rose-800">
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
       </button>
     </div>
   </nav>
 
   @if (isMobileMenuOpen) {
     <div class="absolute w-full bg-rose-50 shadow-md p-4 lg:hidden">
-      @if (!isLoggedIn) {
-        <a href="/login" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Sign In</a>
+      @if (user()) {
+        <span class="block py-2 px-4 text-sm font-semibold text-rose-800">Hola, {{ user()?.name }}</span>
+        <a (click)="logout()" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded cursor-pointer">Logout</a>
       } @else {
-        <span class="block py-2 px-4 text-sm font-semibold text-rose-800">Hola, Carlos</span>
+        <a href="/login" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Sign In</a>
       }
+      <hr class="my-2 border-rose-100">
       <a href="/cart" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Cart</a>
       <a href="/products" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Products</a>
     </div>
-  }
+  }
 </div>

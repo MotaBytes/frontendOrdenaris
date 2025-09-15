@@ -1,24 +1,38 @@
-import { inject, Injectable } from '@angular/core';
+// src/app/core/services/auth.service.ts
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, switchMap, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { UsersService } from './users/users.service';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private readonly apiUrl = 'https://api.escuelajs.co/api/v1';
 
-  private readonly apiUrl = 'https://api.escuelajs.co/api/v1/auth/login';
+  private userService = inject(UsersService);
+  private http = inject(HttpClient);
+  private router = inject(Router);
 
-  private http = inject(HttpClient)
-
-  login(credentials: { email: string, password: string }): Observable<any> {
-    return this.http.post<any>(this.apiUrl, credentials).pipe(
-      tap(response => {
-        if (response && response.access_token) {
-          this.saveToken(response.access_token);
-        }
-      })
+  login(credentials: { email: string; password: string }): Observable<User> {
+    return this.http.post<any>(`${this.apiUrl}/auth/login`, credentials).pipe(
+      tap(response => this.saveToken(response.access_token)), 
+      switchMap(() => this.getProfile())
     );
+  }
+
+  getProfile(): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/auth/profile`).pipe(
+      tap(user => this.userService.setCurrentUser(user))
+    );
+  }
+
+  logout(): void {
+    sessionStorage.removeItem('authToken');
+    this.userService.setCurrentUser(null);
+    this.router.navigate(['/auth/login']);
   }
 
   private saveToken(token: string): void {
@@ -27,13 +41,5 @@ export class AuthService {
 
   getToken(): string | null {
     return sessionStorage.getItem('authToken');
-  }
-
-  logout(): void {
-    sessionStorage.removeItem('authToken');
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.getToken();
   }
 }

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../core/services/auth.service';
+import { UsersService } from '../../core/services/users/users.service';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +11,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.css'] 
 })
 export class SidebarComponent {
-  isExpanded = false;
+   private userService = inject(UsersService);
+   private authService = inject(AuthService); 
+   public user = this.userService.currentUser.asReadonly(); 
+   public isExpanded = false;
 
   activeRoute: string = 'Home'; 
 
@@ -19,5 +25,8 @@ export class SidebarComponent {
   setActiveRoute(routeName: string): void {
     this.activeRoute = routeName;
     this.isExpanded = false; 
+  }
+  logout(): void {
+    this.authService.logout();
   }
 }
