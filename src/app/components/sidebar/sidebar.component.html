@@ -24,7 +24,13 @@
         <span class="ml-4 font-semibold text-sm sidebar-text">Home</span>
       }
     </a>
-    <a (click)="setActiveRoute('Home')" [class.bg-rose-100]="activeRoute === 'Home'" class="flex items-center p-3 rounded-lg hover:bg-rose-50 cursor-pointer">
+    <a routerLink="/landing/products" (click)="setActiveRoute('Products')" [class.bg-rose-100]="activeRoute === 'Products'" [class.text-rose-600]="activeRoute === 'Products'" class="flex items-center p-3 rounded-lg hover:bg-rose-50 cursor-pointer">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      @if (isExpanded) {
+        <span class="ml-4 font-semibold text-sm sidebar-text">Products</span>
+      }
+    </a>
+    <a routerLink="/landing/cart" (click)="setActiveRoute('Cart')" [class.bg-rose-100]="activeRoute === 'Cart'" [class.text-rose-600]="activeRoute === 'Cart'" class="flex items-center p-3 rounded-lg hover:bg-rose-50 cursor-pointer">
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
       @if (isExpanded) {
         <span class="ml-4 font-semibold text-sm sidebar-text">Cart</span>

@@ -66,7 +66,7 @@ export class LoginFormComponent implements OnInit {
         finalize(() => this.isLoading = false)
       ).subscribe({
         next: (user) => {
-          this.router.navigate(['/landing']);
+          this.router.navigate(['/landing/products']);
           this._snackbar.openSnackBar(`Bienvenido, ${user.name}`);
 
         },
