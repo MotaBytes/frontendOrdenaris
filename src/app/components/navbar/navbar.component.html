@@ -1,0 +1,70 @@
+<nav class="w-full bg-[#D68587] border-b">
+  <div class="mx-auto max-w-7xl px-3 md:px-6">
+    <!-- Móvil: 2 cols / Desktop: 3 cols [max-content, 1fr, max-content] -->
+    <div
+      class="grid grid-cols-2 md:grid-cols-[max-content,1fr,max-content] items-center gap-3 py-2">
+
+      <!-- Col: izquierda -->
+      <div class="flex items-center gap-6">
+        <a routerLink="/" class="text-2xl font-extrabold tracking-tight text-gray-200">
+          PLATZI
+        </a>
+
+        <!-- Links desktop -->
+        <div class="hidden md:flex items-center gap-5 text-sm text-gray-700">
+          @for (link of links; track link.to) {
+            <a [routerLink]="link.to" class="hover:text-black">{{ link.label }}</a>
+          }
+          <!-- Categorías -->
+          <div>
+            <mat-menu #catMenu="matMenu">
+              @for (c of categories; track c) {
+                <button mat-menu-item>{{ c }}</button>
+              }
+            </mat-menu>
+            <button mat-button [matMenuTriggerFor]="catMenu"
+                    class="!min-w-0 !px-0 text-gray-200 hover:!text-black flex items-center gap-1">
+              Categorías
+              <mat-icon class="!text-base">expand_more</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col: derecha -->
+      <div class="flex items-center justify-end gap-2">
+        <!-- Usuario -->
+        <button mat-button [matMenuTriggerFor]="userMenu"
+                class="!py-1 !px-2 rounded-full flex items-center gap-2">
+          <span
+            class="inline-flex items-center justify-center rounded-full bg-sky-500 text-white w-8 h-8 text-sm font-semibold">
+            {{ user.initials }}
+          </span>
+          <span class="hidden md:inline text-sm text-gray-800">{{ user.name }}</span>
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item>Perfil</button>
+          <button mat-menu-item>Mis pedidos</button>
+          <button mat-menu-item>Salir</button>
+        </mat-menu>
+
+        <!-- Carrito: puntito tipo notificación -->
+        <button mat-icon-button aria-label="Carrito"
+                matBadge=" " matBadgeDot matBadgeColor="warn"
+                matBadgePosition="above after" matBadgeOverlap="false">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Links en móvil (debajo del buscador) -->
+    <div class="flex md:hidden items-center gap-5 text-sm text-gray-200 pb-2">
+      @for (link of links; track link.to) {
+        <a [routerLink]="link.to" class="hover:text-black">{{ link.label }}</a>
+      }
+      <button mat-button [matMenuTriggerFor]="catMenu" class="!min-w-0 !px-0 flex items-center gap-1">
+        Categorías <mat-icon class="!text-base">expand_more</mat-icon>
+      </button>
+    </div>
+  </div>
+</nav>

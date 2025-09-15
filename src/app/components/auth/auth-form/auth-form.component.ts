@@ -13,7 +13,6 @@ import { RegisterFormComponent } from '../register/register-form/register-form.c
   styleUrl: './auth-form.component.css'
 })
 export class AuthFormComponent {
-  // 'login' | 'register'
   private _mode = signal<'login' | 'register'>('login');
   mode = this._mode.asReadonly();
 

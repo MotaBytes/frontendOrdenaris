@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './card-forms-mobile.component.html',
-  styleUrl: './card-forms-mobile.component.css'
 })
 export class CardFormsMobileComponent {
 
