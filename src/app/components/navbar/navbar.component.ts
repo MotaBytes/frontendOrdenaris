@@ -9,7 +9,6 @@ import { MatBadgeModule } from '@angular/material/badge';
   selector: 'app-navbar',
   standalone: true,
   imports: [
-    RouterLink,
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
@@ -24,14 +23,11 @@ export class NavbarComponent {
   user = { initials: 'AG', name: 'Alejandro Gonzalez' };
   cartCount = signal(1);
 
-  ngAfterViewInit(): void {
-    const menuBtn = document.getElementById('menu-btn');  
-    const mobileMenu = document.getElementById('mobile-menu');
+  isMobileMenuOpen = false;
 
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
+  isLoggedIn = false;
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 }

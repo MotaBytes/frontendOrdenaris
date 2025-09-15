@@ -1,20 +1,8 @@
-<div class="flex min-h-screen bg-gray-100">
+<div class="relative">
+  <nav class="flex items-center justify-between bg-rose-200 shadow-md p-4 lg:rounded-full lg:m-8 lg:px-6">
+    <div class="text-xl font-bold text-rose-800">PlatZi</div>
 
-  <aside class="hidden w-24 bg-white p-4 lg:block">
-    <div class="w-12 h-12 bg-gray-200 rounded-full mx-auto"></div>
-  </aside>
-
-  <main class="w-full">
-    
-    <div class="relative">
-
-      <nav class="flex items-center justify-between bg-rose-200 shadow-md p-4 lg:rounded-full lg:m-8 lg:px-6">
-
-        <div class="text-xl font-bold text-rose-800">
-          MiLogo
-        </div>
-
-        <div class="hidden items-center space-x-6 lg:flex">
+    <div class="hidden items-center space-x-6 lg:flex">
           <div class="relative w-80">
             <span class="absolute inset-y-0 left-0 flex items-center pl-4">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
@@ -33,30 +21,26 @@
               <span>Cart</span>
             </a>
           </div>
-        </div>
+    </div>
 
-        <div class="lg:hidden">
-          <button id="menu-btn" class="text-rose-800 hover:text-rose-600 focus:outline-none">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </nav>
+    <div class="lg:hidden">
+      <button (click)="toggleMobileMenu()" class="text-rose-800">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
 
-      <div id="mobile-menu" class="hidden absolute w-full bg-rose-50 shadow-md p-4 lg:hidden">
+  @if (isMobileMenuOpen) {
+    <div class="absolute w-full bg-rose-50 shadow-md p-4 lg:hidden">
+      @if (!isLoggedIn) {
         <a href="/login" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Sign In</a>
-        <a href="/cart" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Cart</a>
-        <a href="/products" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Products</a>
-      </div>
-
+      } @else {
+        <span class="block py-2 px-4 text-sm font-semibold text-rose-800">Hola, Carlos</span>
+      }
+      <a href="/cart" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Cart</a>
+      <a href="/products" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Products</a>
     </div>
-    <div class="p-8">
-      <div class="bg-white p-8 rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold">Contenido de la Página</h1>
-        <p class="mt-4">Aquí va el resto de tu landing page...</p>
-      </div>
-    </div>
-
-  </main>
+  }
 </div>

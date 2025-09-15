@@ -1,1 +1,11 @@
-<app-navbar></app-navbar>
+<div class="flex h-screen">
+  <app-sidebar></app-sidebar>
+
+  <main class="w-full">
+    <app-navbar></app-navbar>
+
+    <div class="p-8">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
