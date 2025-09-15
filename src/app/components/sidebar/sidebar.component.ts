@@ -3,12 +3,13 @@ import { Router, NavigationEnd, RouterLink } from '@angular/router';
 import { filter } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { UsersService } from '../../core/services/users/users.service';
+import { MatIcon } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, MatIcon],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'] 
 })
@@ -31,14 +32,16 @@ export class SidebarComponent implements OnInit {
   }
 
   private updateActiveRoute(url: string): void {
-    if (url.includes('/products')) {
-      this.activeRoute = 'Products';
-    } else if (url.includes('/cart')) {
-      this.activeRoute = 'Cart';
-    } else {
-      this.activeRoute = 'Home';
-    }
+  if (url.includes('/categories')) {
+    this.activeRoute = 'Categories';
+  } else if (url.includes('/cart')) {
+    this.activeRoute = 'Cart';
+  } else if (url.includes('/profile')) {
+    this.activeRoute = 'Profile';
+  } else {
+    this.activeRoute = 'Home';
   }
+}
 
   toggleSidebar(): void {
     this.isExpanded = !this.isExpanded;
