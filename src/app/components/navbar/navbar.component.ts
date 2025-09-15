@@ -1,12 +1,9 @@
-// src/app/shared/navbar/navbar.component.ts
-import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
-import { SearchInputComponent } from '../search-input/search-input.component';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +14,6 @@ import { SearchInputComponent } from '../search-input/search-input.component';
     MatMenuModule,
     MatButtonModule,
     MatBadgeModule,
-    SearchInputComponent
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -27,4 +23,15 @@ export class NavbarComponent {
   categories = ['Cargadores', 'Fundas', 'Cables', 'Audífonos'];
   user = { initials: 'AG', name: 'Alejandro Gonzalez' };
   cartCount = signal(1);
+
+  ngAfterViewInit(): void {
+    const menuBtn = document.getElementById('menu-btn');  
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  }
 }

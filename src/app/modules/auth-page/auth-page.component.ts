@@ -8,7 +8,6 @@ import { AuthFormComponent } from '../../components/auth/auth-form/auth-form.com
   standalone: true,
   imports: [CardFormsComponent, CardFormsMobileComponent, AuthFormComponent],
   templateUrl: './auth-page.component.html',
-  styleUrl: './auth-page.component.css'
 })
 export class AuthPageComponent {
 

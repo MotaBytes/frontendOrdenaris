@@ -1,70 +1,62 @@
-<nav class="w-full bg-[#D68587] border-b">
-  <div class="mx-auto max-w-7xl px-3 md:px-6">
-    <!-- Móvil: 2 cols / Desktop: 3 cols [max-content, 1fr, max-content] -->
-    <div
-      class="grid grid-cols-2 md:grid-cols-[max-content,1fr,max-content] items-center gap-3 py-2">
+<div class="flex min-h-screen bg-gray-100">
 
-      <!-- Col: izquierda -->
-      <div class="flex items-center gap-6">
-        <a routerLink="/" class="text-2xl font-extrabold tracking-tight text-gray-200">
-          PLATZI
-        </a>
+  <aside class="hidden w-24 bg-white p-4 lg:block">
+    <div class="w-12 h-12 bg-gray-200 rounded-full mx-auto"></div>
+  </aside>
 
-        <!-- Links desktop -->
-        <div class="hidden md:flex items-center gap-5 text-sm text-gray-700">
-          @for (link of links; track link.to) {
-            <a [routerLink]="link.to" class="hover:text-black">{{ link.label }}</a>
-          }
-          <!-- Categorías -->
-          <div>
-            <mat-menu #catMenu="matMenu">
-              @for (c of categories; track c) {
-                <button mat-menu-item>{{ c }}</button>
-              }
-            </mat-menu>
-            <button mat-button [matMenuTriggerFor]="catMenu"
-                    class="!min-w-0 !px-0 text-gray-200 hover:!text-black flex items-center gap-1">
-              Categorías
-              <mat-icon class="!text-base">expand_more</mat-icon>
-            </button>
+  <main class="w-full">
+    
+    <div class="relative">
+
+      <nav class="flex items-center justify-between bg-rose-200 shadow-md p-4 lg:rounded-full lg:m-8 lg:px-6">
+
+        <div class="text-xl font-bold text-rose-800">
+          MiLogo
+        </div>
+
+        <div class="hidden items-center space-x-6 lg:flex">
+          <div class="relative w-80">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" /></svg>
+            </span>
+            <input type="text" placeholder="Search" class="w-full bg-rose-100 rounded-full py-2 pl-12 pr-4 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+          </div>
+
+          <div class="flex items-center space-x-6 text-sm font-medium text-gray-600">
+            <a href="/login" class="flex items-center space-x-2 hover:text-rose-600 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
+              <span>Sign Up/Sign In</span>
+            </a>
+            <div class="h-5 border-l border-rose-300"></div>
+            <a href="/cart" class="flex items-center space-x-2 hover:text-rose-600 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" /></svg>
+              <span>Cart</span>
+            </a>
           </div>
         </div>
+
+        <div class="lg:hidden">
+          <button id="menu-btn" class="text-rose-800 hover:text-rose-600 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <div id="mobile-menu" class="hidden absolute w-full bg-rose-50 shadow-md p-4 lg:hidden">
+        <a href="/login" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Sign In</a>
+        <a href="/cart" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Cart</a>
+        <a href="/products" class="block py-2 px-4 text-sm text-gray-700 hover:bg-rose-100 rounded">Products</a>
       </div>
 
-      <!-- Col: derecha -->
-      <div class="flex items-center justify-end gap-2">
-        <!-- Usuario -->
-        <button mat-button [matMenuTriggerFor]="userMenu"
-                class="!py-1 !px-2 rounded-full flex items-center gap-2">
-          <span
-            class="inline-flex items-center justify-center rounded-full bg-sky-500 text-white w-8 h-8 text-sm font-semibold">
-            {{ user.initials }}
-          </span>
-          <span class="hidden md:inline text-sm text-gray-800">{{ user.name }}</span>
-        </button>
-        <mat-menu #userMenu="matMenu">
-          <button mat-menu-item>Perfil</button>
-          <button mat-menu-item>Mis pedidos</button>
-          <button mat-menu-item>Salir</button>
-        </mat-menu>
-
-        <!-- Carrito: puntito tipo notificación -->
-        <button mat-icon-button aria-label="Carrito"
-                matBadge=" " matBadgeDot matBadgeColor="warn"
-                matBadgePosition="above after" matBadgeOverlap="false">
-          <mat-icon>shopping_cart</mat-icon>
-        </button>
+    </div>
+    <div class="p-8">
+      <div class="bg-white p-8 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold">Contenido de la Página</h1>
+        <p class="mt-4">Aquí va el resto de tu landing page...</p>
       </div>
     </div>
 
-    <!-- Links en móvil (debajo del buscador) -->
-    <div class="flex md:hidden items-center gap-5 text-sm text-gray-200 pb-2">
-      @for (link of links; track link.to) {
-        <a [routerLink]="link.to" class="hover:text-black">{{ link.label }}</a>
-      }
-      <button mat-button [matMenuTriggerFor]="catMenu" class="!min-w-0 !px-0 flex items-center gap-1">
-        Categorías <mat-icon class="!text-base">expand_more</mat-icon>
-      </button>
-    </div>
-  </div>
-</nav>
+  </main>
+</div>
