@@ -21,7 +21,13 @@ export const routes: Routes = [
             {
                 path: 'cart', loadComponent: () => import('./modules/cart/cart.component').then(m => m.CartComponent)
             },
+            {
+                path: '**', redirectTo: 'products', pathMatch: 'full'
+            }
         ]
     },
+    {
+        path: '**', redirectTo: 'login', pathMatch: 'full'
+    }
     
 ];

@@ -31,8 +31,9 @@ export class AuthService {
 
   logout(): void {
     sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('cart');
     this.userService.setCurrentUser(null);
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
   }
 
   private saveToken(token: string): void {

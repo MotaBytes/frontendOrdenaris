@@ -1,29 +1,29 @@
 <form [formGroup]="formGroup" class="space-y-3">
   
   <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Correo Electrónico</mat-label>
+    <mat-label>Email</mat-label>
     <input matInput formControlName="email" type="email" placeholder="tu@correo.com" />
     <mat-icon matSuffix>person</mat-icon>
     @if (emailInput.hasError('required')) {
-      <mat-error>El correo es requerido.</mat-error>
+      <mat-error>The email is required.</mat-error>
     }
     @if(emailInput.hasError('email')) {
-      <mat-error>El formato del correo no es válido.</mat-error>
+      <mat-error>Incorrect email format.</mat-error>
     }
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="w-full">
-    <mat-label>Contraseña</mat-label>
+    <mat-label>Password</mat-label>
     <input matInput formControlName="password" type="password" placeholder="••••••••" />
     <mat-icon matSuffix>lock</mat-icon>
     @if(passwordInput.hasError('required')) {
-      <mat-error>La contraseña es requerida.</mat-error>
+      <mat-error>The password is required.</mat-error>
     }
   </mat-form-field>
 
   <div class="flex justify-between items-center text-xs">
-    <mat-checkbox class="!text-gray-700">Recordarme</mat-checkbox>
-    <a class="text-rose-500 hover:underline cursor-pointer">¿Olvidaste tu contraseña?</a>
+    <mat-checkbox class="!text-gray-700">Remind me</mat-checkbox>
+    <a class="text-rose-500 hover:underline cursor-pointer">Forgot your password?</a>
   </div>
 
   <button mat-raised-button 
@@ -35,15 +35,7 @@
     @if (isLoading) {
       <mat-spinner [diameter]="24" color="accent" class="mx-auto"></mat-spinner>
     } @else {
-      <span>Iniciar sesión</span>
+      <span>Login</span>
     }
   </button>
-
-  <p class="text-xs text-right mt-4 text-gray-800">
-    ¿No tienes una cuenta?
-    <a class="text-rose-500 hover:underline cursor-pointer">Registrar</a>
-  </p>
-  <p class="text-xs text-left mt-4 text-gray-800">
-    <a class="text-rose-500 hover:underline flex items-center gap-1 cursor-pointer">← Volver a inicio</a>
-  </p>
 </form>
