@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap, switchMap, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { UsersService } from './users/users.service';
-import { User } from '../interfaces/user';
+import { CreateUserDTO, User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +54,9 @@ export class AuthService {
         this.logout();
       }
     });
+  }
+
+  register(userData: CreateUserDTO): Observable<User> {
+    return this.http.post<User>(`${this.apiUrl}/users/`, userData);
   }
 }

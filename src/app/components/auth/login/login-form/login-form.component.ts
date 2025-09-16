@@ -36,8 +36,8 @@ export class LoginFormComponent implements OnInit {
   
   protected isLoading = false;
   protected formGroup = this._formBuilder.group({
-      email: ['john@mail.com', [Validators.required, Validators.email]],
-      password: ['changeme', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
 
 
@@ -67,8 +67,8 @@ export class LoginFormComponent implements OnInit {
       ).subscribe({
         next: (user) => {
           this.router.navigate(['/landing/products']);
-          this._snackbar.openSnackBar(`Bienvenido, ${user.name}`);
-
+          this._snackbar.openSnackBar(`Welcome, ${user.name}`);
+          this.isLoading = false;
         },
         error: () => {
           this._snackbar.openSnackBar('Usuario o contraseña incorrectos.')

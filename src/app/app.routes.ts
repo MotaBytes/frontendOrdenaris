@@ -22,6 +22,9 @@ export const routes: Routes = [
                 path: 'cart', loadComponent: () => import('./modules/cart/cart.component').then(m => m.CartComponent)
             },
             {
+                path: 'profile', loadComponent: () => import('./modules/profile/profile.component').then(m => m.ProfileComponent)
+            },
+            {
                 path: '**', redirectTo: 'products', pathMatch: 'full'
             }
         ]
