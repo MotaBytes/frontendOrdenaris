@@ -3,13 +3,14 @@
     <h3 class="text-lg sm:text-xl font-semibold text-gray-800">
       Shop From <span class="text-rose-500">Top Categories</span>
     </h3>
-    <a href="#" class="text-xs sm:text-sm font-medium text-rose-500 hover:underline">View All &gt;</a>
+    <a routerLink="/categories" class="text-xs sm:text-sm font-medium text-rose-500 hover:underline">View All &gt;</a>
   </div>
   
   @if (categories$ | async; as categories) {
     <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 sm:gap-6 md:gap-8">
-      @for (category of categories; track category.id) {
-        <a href="#" class="flex flex-col items-center group">
+      
+      @for (category of categories | slice:0:7; track category.id) {
+        <a class="flex flex-col items-center group">
           <div class="w-20 h-20 sm:w-24 sm:h-24 bg-gray-100 rounded-full flex items-center justify-center p-3 sm:p-4 border-2 border-transparent group-hover:border-rose-300 transition-all duration-300">
             <img [src]="category.image" [alt]="category.name" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300">
           </div>
