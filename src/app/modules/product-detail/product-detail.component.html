@@ -1,0 +1,66 @@
+<div class="p-4 md:p-8">
+  @if (product$ | async; as product) {
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 max-w-7xl mx-auto">
+      
+      <div class="flex flex-col gap-4">
+        <div class="w-full h-96 bg-gray-100 rounded-2xl flex items-center justify-center overflow-hidden">
+          <img [src]="selectedImage()" [alt]="product.title" class="w-full h-full object-cover transition-all duration-300">
+        </div>
+        <div class="grid grid-cols-5 gap-3">
+          @for (image of product.images; track image) {
+            <div 
+              (click)="changeImage(image)" 
+              class="h-20 bg-gray-100 rounded-lg cursor-pointer overflow-hidden border-2 transition"
+              [class.border-rose-500]="selectedImage() === image"
+              [class.border-transparent]="selectedImage() !== image">
+              <img [src]="image" [alt]="product.title + ' thumbnail'" class="w-full h-full object-cover">
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <span class="text-rose-300 font-semibold">{{ product.category.name }}</span>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">{{ product.title }}</h1>
+        <p class="text-3xl font-light text-gray-900 mt-4">${{ product.price }}.00</p>
+        
+        <div class="mt-6">
+          <h3 class="text-sm font-medium text-gray-900">Size</h3>
+          <mat-button-toggle-group class="mt-2">
+            <mat-button-toggle value="41">41</mat-button-toggle>
+            <mat-button-toggle value="42">42</mat-button-toggle>
+            <mat-button-toggle value="43">43</mat-button-toggle>
+            <mat-button-toggle value="44" disabled>44</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div class="flex items-center gap-4 mt-8">
+          <div class="flex items-center border border-gray-300 rounded-lg">
+            <button (click)="decrementQuantity()" mat-icon-button><mat-icon>remove</mat-icon></button>
+            <span class="w-12 text-center">{{ quantity() }}</span>
+            <button (click)="incrementQuantity()" mat-icon-button><mat-icon>add</mat-icon></button>
+          </div>
+          @if (product$ | async; as product) {
+            <button 
+              (click)="addToCart(product)" 
+              mat-flat-button 
+              class="!bg-rose-500 !text-white flex-grow !py-6 !text-base">
+              Add to Cart
+            </button>
+            } @else {
+          }
+        </div>
+        
+        <div class="mt-8">
+          <h3 class="font-bold text-gray-800 mb-2">Details</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">{{ product.description }}</p>
+        </div>
+      </div>
+
+    </div>
+  } @else {
+    <div class="flex justify-center items-center h-96">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
+</div>

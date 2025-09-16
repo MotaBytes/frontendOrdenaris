@@ -11,6 +11,7 @@ import { Product } from '../../core/interfaces/product';
   templateUrl: './products-landing.component.html',
 })
 export class ProductsLandingComponent {
+
   private productsService = inject(ProductsService);
 
   public products$!: Observable<Product[]>;
@@ -18,8 +19,5 @@ export class ProductsLandingComponent {
   ngOnInit(): void {
     this.products$ = this.productsService.get4Products(4, 0);
   }
-
-  calculateOriginalPrice(price: number): number {
-    return Math.floor(price * 1.15);
-  }
+  
 }

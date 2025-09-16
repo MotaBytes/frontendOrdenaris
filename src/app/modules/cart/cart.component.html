@@ -1,1 +1,57 @@
-<p>cart works!</p>
+<div class="p-4 md:p-8 max-w-7xl mx-auto">
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">Shopping Cart</h1>
+
+  @if (cartItems().length > 0) {
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <div class="lg:col-span-2 space-y-4">
+        @for (item of cartItems(); track item.product.id) {
+          <div class="flex flex-col sm:flex-row items-center bg-white p-4 rounded-lg shadow-md gap-4">
+            <img [src]="item.product.images[0]" [alt]="item.product.title" class="w-24 h-24 object-cover rounded-md">
+            
+            <div class="flex-grow text-center sm:text-left">
+              <h3 class="font-semibold text-gray-800">{{ item.product.title }}</h3>
+              <p class="text-rose-500 font-bold mt-1">${{ item.product.price }}.00</p>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="flex items-center border border-gray-300 rounded-lg">
+                <button (click)="updateQuantity(item, item.quantity - 1)" mat-icon-button><mat-icon>remove</mat-icon></button>
+                <span class="w-10 text-center">{{ item.quantity }}</span>
+                <button (click)="updateQuantity(item, item.quantity + 1)" mat-icon-button><mat-icon>add</mat-icon></button>
+              </div>
+              <p class="w-24 text-right font-bold text-gray-900">${{ item.product.price * item.quantity }}.00</p>
+              <button (click)="removeItem(item)" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md h-fit">
+        <h2 class="text-xl font-bold border-b pb-4">Order Summary</h2>
+        <div class="space-y-4 mt-4">
+          <div class="flex justify-between">
+            <span>Subtotal</span>
+            <span class="font-semibold">${{ cartTotal() }}.00</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Shipping</span>
+            <span class="font-semibold">Free</span>
+          </div>
+          <div class="border-t pt-4 flex justify-between font-bold text-lg">
+            <span>Total</span>
+            <span>${{ cartTotal() }}.00</span>
+          </div>
+        </div>
+        <button mat-flat-button class="!bg-rose-300 !text-white w-full !mt-6 !py-6">Proceed to Checkout</button>
+      </div>
+
+    </div>
+  } @else {
+    <div class="text-center py-20 bg-white rounded-lg shadow-md">
+      <h2 class="text-2xl font-semibold text-gray-700">Your cart is empty</h2>
+      <p class="text-gray-500 mt-2">Looks like you haven't added anything to your cart yet.</p>
+      <a routerLink="/" mat-flat-button class="!bg-rose-200 !text-white !mt-6">Continue Shopping</a>
+    </div>
+  }
+</div>

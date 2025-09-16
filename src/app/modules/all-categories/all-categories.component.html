@@ -1,1 +1,48 @@
-<p>all-categories works!</p>
+<div class="p-4 md:p-8 space-y-12">
+  @for (category of categoriesWithProducts; track category.id) {
+    <section class="w-full max-w-7xl mx-auto">
+      <div class="border-b-2 border-rose-300 pb-2 mb-8">
+        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">{{ category.name }}</h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        @for (product of category.products; track product.id) {
+          <div class="bg-white rounded-xl shadow-md overflow-hidden group">
+            <div class="relative">
+              <img class="h-56 w-full object-cover group-hover:scale-105 transition-transform" [src]="product.images[0]" [alt]="product.title">
+            </div>
+            <div class="p-4">
+              <h3 class="text-gray-800 font-semibold truncate">{{ product.title }}</h3>
+              <div class="flex justify-between items-center mt-3">
+                <p class="text-sm">
+                  <span class="text-gray-800 font-bold">${{ product.price }}.00</span>
+                </p>
+                <a [routerLink]="['/landing/product', product.id]" class="bg-gray-200 hover:bg-rose-200 text-gray-700 rounded-full py-1 px-3 text-sm flex items-center justify-center transition">
+                  See more
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="text-center mt-8">
+        @if (category.loading) {
+          <mat-spinner [diameter]="40" class="mx-auto"></mat-spinner>
+        }
+        
+        @if (!category.allProductsLoaded && !category.loading) {
+          <div 
+            class="h-10"
+            appInfiniteScrollTrigger 
+            (scrolled)="loadProductsForCategory(category)">
+          </div>
+        }
+        
+        @if (category.allProductsLoaded) {
+          <p class="text-gray-500 text-sm">No more products in this category.</p>
+        }
+      </div>
+    </section>
+  }
+</div>

@@ -14,18 +14,17 @@
               class="h-56 w-full object-cover group-hover:scale-105 transition-transform duration-300" 
               [src]="product.images[0]" 
               [alt]="product.title">
-            <span class="absolute top-3 left-3 bg-gray-800 text-white text-xs font-semibold px-2 py-1 rounded-full">-13%</span>
+            <span class="absolute top-3 left-3 bg-gray-800 text-white text-xs font-semibold px-2 py-1 rounded-full">-15%</span>
           </div>
 
           <div class="p-4">
             <h3 class="text-gray-800 font-semibold truncate">{{ product.title }}</h3>
             <div class="flex justify-between items-center mt-3">
               <p class="text-sm">
-                <span class="text-gray-400 line-through">${{ calculateOriginalPrice(product.price) }}.00</span>
                 <span class="text-gray-800 font-bold ml-2">${{ product.price }}.00</span>
               </p>
-              <button class="bg-gray-200 hover:bg-rose-200 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center transition">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+              <button class="bg-gray-200 hover:bg-rose-200 text-gray-700 rounded-full p-2 flex items-center justify-center transition">
+                <a href="">See more</a>
               </button>
             </div>
           </div>
